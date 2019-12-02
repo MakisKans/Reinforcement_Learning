@@ -36,13 +36,11 @@ class Agent():
     def _build_dqn(self, conv_params, dense_params):
         inputs_ = Input(shape=self.input_shape)
         out = inputs_
-# =============================================================================
-#         for index, (fl, ks, st) in enumerate(conv_params):
-#             out = Conv2D(filters=fl, kernel_size=ks, strides=st,
-#                          activation='relu')(out)
-#             
-#         out = Flatten()(out)
-# =============================================================================
+        for index, (fl, ks, st) in enumerate(conv_params):
+            out = Conv2D(filters=fl, kernel_size=ks, strides=st,
+                         activation='relu')(out)
+            
+        out = Flatten()(out)
         
         for units in dense_params:
             out = Dense(units=units, activation='relu')(out)
